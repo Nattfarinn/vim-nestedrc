@@ -3,7 +3,7 @@ if (exists('g:loaded_nestedrc') && g:loaded_nestedrc)
 endif
 let g:loaded_nestedrc = 1
 
-if (!g:nestedrc_root_directory)
+if (!exists('g:nestedrc_root_directory'))
     let g:nestedrc_root_directory = $HOME
 endif
 
