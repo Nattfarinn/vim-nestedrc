@@ -3,6 +3,10 @@ if (exists('g:loaded_nestedrc') && g:loaded_nestedrc)
 endif
 let g:loaded_nestedrc = 1
 
+if !has('unix')
+    finish
+endif
+
 if (!exists('g:nestedrc_root_directory'))
     let g:nestedrc_root_directory = $HOME
 endif
@@ -17,7 +21,7 @@ if (s:nestedrc_cwd =~ g:nestedrc_root_directory)
                 let s:nestedrc_found += [s:nestedrc_cwd . '/.vimrc']
             endif
         endif
-        if (s:nestedrc_cwd == g:nestedrc_root_directory)
+        if (s:nestedrc_cwd == g:nestedrc_root_directory || s:nestedrc_cwd == '/')
             break
         endif
         let s:nestedrc_cwd = resolve(s:nestedrc_cwd . '/..')
